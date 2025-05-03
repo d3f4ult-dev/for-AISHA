@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All U Need Is Love</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hidden input to capture keypresses anywhere on the page -->
+    <input type="text" id="secret-input" class="secret-input">
+    
+    <div class="wrapper">
+        <nav>
+            <div class="logo">LOVE</div>
+            <ul class="menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#" id="countdown-link">Countdown</a></li>
+                <li><a href="#" id="reasons-link">Reasons</a></li>
+                <li><a href="#" id="memories-link">Memories</a></li>
+                <li><a href="#" id="milestones-link">Milestones</a></li>
+                <li><a href="#" id="gallery-link">Gallery</a></li>
+                <li><a href="#" id="connect-link">Connect</a></li>
+            </ul>
+        </nav>
+
+        <div class="theme-toggle">
+            <button id="theme-toggle-btn" aria-label="Toggle dark mode">
+                <span class="light-icon">☀️</span>
+                <span class="dark-icon">🌙</span>
+            </button>
+        </div>
+
+        <!-- Add after the nav section -->
+        <div class="relationship-dashboard">
+            <div class="dashboard-header">
+                <h3>Our Relationship Dashboard</h3>
+                <div class="dashboard-controls">
+                    <button id="refresh-dashboard">Refresh</button>
+                    <button id="toggle-dashboard">Hide</button>
+                </div>
+            </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-item">
+                    <div class="item-icon">❤️</div>
+                    <div class="item-content">
+                        <h4>Days Together</h4>
+                        <div class="item-value" id="days-together">0</div>
+                    </div>
+                </div>
+                <div class="dashboard-item">
+                    <div class="item-icon">💬</div>
+                    <div class="item-content">
+                        <h4>Reasons Count</h4>
+                        <div class="item-value" id="reasons-count">0</div>
+                    </div>
+                </div>
+                <div class="dashboard-item">
+                    <div class="item-icon">📅</div>
+                    <div class="item-content">
+                        <h4>Next Meeting</h4>
+                        <div class="item-value" id="next-meeting-countdown">--</div>
+                    </div>
+                </div>
+                <div class="dashboard-item">
+                    <div class="item-icon">📝</div>
+                    <div class="item-content">
+                        <h4>Memories</h4>
+                        <div class="item-value" id="memories-count">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <div class="content">
+                <h1>MILES APART, <span>CONNECTED BY HEART</span></h1>
+                <p>Distance means so little when someone means so much</p>
+                
+                <div class="distance-info">
+                    <div id="miles-display" class="stats-box">
+                        <span class="value">123</span>
+                        <span class="label">Miles Apart</span>
+                    </div>
+                    <div id="countdown-display" class="stats-box">
+                        <span class="value">0</span>
+                        <span class="label">Days Until We Meet</span>
+                    </div>
+                </div>
+                
+                <button id="generate-btn">Show Me Why I Love You</button>
+                <button id="set-date-btn">Set Next Meeting Date</button>
+                <div class="quick-actions">
+                    <button id="quick-memory-btn" class="quick-action-btn memory-btn">
+                        <span class="action-icon">📝</span>
+                        <span class="action-text">Add Memory</span>
+                    </button>
+                    <button id="quick-milestone-btn" class="quick-action-btn milestone-btn">
+                        <span class="action-icon">🏆</span>
+                        <span class="action-text">Milestone</span>
+                    </button>
+                    <button id="quick-photo-btn" class="quick-action-btn photo-btn">
+                        <span class="action-icon">📸</span>
+                        <span class="action-text">Add Photo</span>
+                    </button>
+                    <button id="quick-letter-btn" class="quick-action-btn letter-btn">
+                        <span class="action-icon">💌</span>
+                        <span class="action-text">Write Letter</span>
+                    </button>
+                    <button id="quick-schedule-btn" class="quick-action-btn schedule-btn">
+                        <span class="action-icon">🎮</span>
+                        <span class="action-text">Schedule Play</span>
+                    </button>
+                    <button id="random-fact-btn" class="quick-action-btn fact-btn">
+                        <span class="action-icon">💭</span>
+                        <span class="action-text">Random Fact</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="illustration">
+                <div class="couple-image"></div>
+                <div class="hearts">
+                    <span>❤️</span>
+                    <span>❤️</span>
+                    <span>❤️</span>
+                    <span>❤️</span>
+                    <span>❤️</span>
+                    <span>❤️</span>
+                </div>
+                <div class="connection-line"></div>
+            </div>
+            
+            <div class="modal" id="reason-modal" aria-labelledby="reason-modal-title" aria-modal="true">
+                <div class="modal-content">
+                    <span class="close-btn" aria-label="Close">&times;</span>
+                    <h2 id="reason-modal-title">Reasons I Love You</h2>
+                    <div class="card">
+                        <div class="reason-count">
+                            <span id="current-reason">1</span> of <span id="total-reasons">300+</span> Reasons
+                        </div>
+                        <p id="reason">Click the button to see why I love you ❤️</p>
+                        <div class="reason-actions">
+                            <button id="prev-reason">Previous</button>
+                            <button id="next-reason">Next</button>
+                        </div>
+                    </div>
+                    <div class="edit-section">
+                        <h2>Add Your Own Reasons</h2>
+                        <textarea id="new-reason" placeholder="Type a new reason here..."></textarea>
+                        <button id="add-btn">Add Reason</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal" id="date-modal" aria-labelledby="date-modal-title" aria-modal="true">
+                <div class="modal-content">
+                    <span class="close-btn" aria-label="Close">&times;</span>
+                    <h2 id="date-modal-title">When Will We Meet Next?</h2>
+                    <div class="date-setup">
+                        <input type="date" id="next-date" class="date-input" aria-label="Next meeting date">
+                        <div class="location-inputs">
+                            <div>
+                                <label for="your-location">Your Location:</label>
+                                <input type="text" id="your-location" placeholder="alexandria, Egypt">
+                            </div>
+                            <div>
+                                <label for="their-location">Their Location:</label>
+                                <input type="text" id="their-location" placeholder="Cairo, Egypt">
+                            </div>
+                        </div>
+                        <div class="start-date-container">
+                            <h3>Relationship Timeline</h3>
+                            <label for="relationship-start-date">When did your relationship begin?</label>
+                            <input type="date" id="relationship-start-date" class="date-input">
+                        </div>
+                        <button id="save-date-btn">Save</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Secret Aisha Modal -->
+            <div class="modal" id="secret-modal" aria-labelledby="secret-modal-title" aria-modal="true">
+                <div class="modal-content secret-content">
+                    <span class="close-btn" aria-label="Close">&times;</span>
+                    <div class="secret-confetti"></div>
+                    <h2 id="secret-modal-title" class="secret-title">My Beautiful Aisha ❤️</h2>
+                    <div class="secret-message">
+                        <p class="typewriter-text">hello babe if you are seeing this congrats you found the hidden code i am here to say i just love you the way you are</p>
+                        <div class="special-effects">
+                            <div class="pulsing-heart">❤️</div>
+                            <div class="sparkles">✨</div>
+                        </div>
+                    </div>
+                    <div class="secret-poem">
+                        <p>Distance is nothing</p>
+                        <p>When love is everything</p>
+                        <p>My heart is yours,</p>
+                        <p>Now and forever</p>
+                    </div>
+                    <div class="secret-image-container">
+                        <div class="secret-image">
+                            <!-- Using onerror to handle missing image gracefully -->
+                            <img src="images/couple-photo.jpg" alt="A special photo of us together" class="couple-photo" 
+                                 onerror="this.style.display='none'; document.querySelector('.placeholder-text').style.display='block';">
+                            <div class="placeholder-text" aria-label="Photo placeholder">Our special photo goes here</div>
+                        </div>
+                        
+                        <!-- Animated hearts and kisses -->
+                        <div class="floating-elements">
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="heart">❤️</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                            <span class="kiss">💋</span>
+                        </div>
+                    </div>
+                    <div class="extra-love-message">
+                        <h3>You're my everything</h3>
+                        <p>No matter how far apart we are, my love for you grows stronger every day</p>
+                        <div class="love-signature">Forever Yours ❤️</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memories Modal -->
+            <div class="modal" id="memories-modal" aria-labelledby="memories-modal-title" aria-modal="true">
+                <div class="modal-content memories-content">
+                    <span class="close-btn" aria-label="Close">&times;</span>
+                    <h2 id="memories-modal-title">Our Special Memories</h2>
+                    <div class="memories-container">
+                        <div class="memory-form">
+                            <h3>Add a New Memory</h3>
+                            <input type="text" id="memory-title" placeholder="Memory title" class="memory-input" aria-label="Memory title">
+                            <textarea id="memory-description" placeholder="Describe this special memory..." class="memory-textarea" aria-label="Memory description"></textarea>
+                            <div class="date-input-container">
+                                <label for="memory-date">When did it happen?</label>
+                                <input type="date" id="memory-date" class="memory-date">
+                            </div>
+                            <button id="add-memory-btn">Save Memory</button>
+                        </div>
+                        
+                        <div class="memories-list">
+                            <h3>Our Shared Memories</h3>
+                            <div id="memories-list-container">
+                                <!-- Memories will be added here dynamically -->
+                                <div class="no-memories-message">Add your first memory to start your collection</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Connect Modal -->
+            <div class="modal" id="connect-modal" aria-labelledby="connect-modal-title" aria-modal="true">
+                <div class="modal-content connect-content">
+                    <span class="close-btn" aria-label="Close">&times;</span>
+                    <h2 id="connect-modal-title">Our Connection</h2>
+                    <div class="connection-methods">
+                        <div class="connection-method">
+                            <h3>🎥 Video Call</h3>
+                            <p>Schedule your next video call</p>
+                            <div class="meeting-options">
+                                <select id="video-platform" class="connection-input" aria-label="Video call platform">
+                                    <option value="zoom">Zoom</option>
+                                    <option value="skype">Skype</option>
+                                    <option value="whatsapp">WhatsApp</option>
+                                    <option value="facetime">FaceTime</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <input type="datetime-local" id="videocall-time" class="connection-input" aria-label="Video call date and time">
+                                <div class="meeting-link-container">
+                                    <input type="text" id="meeting-link" placeholder="Meeting link (optional)" class="connection-input" aria-label="Meeting link">
+                                </div>
+                            </div>
+                            <button id="save-videocall-btn">Set Reminder</button>
+                        </div>
+                        
+                        <div class="connection-method">
+                            <h3>🎮 Roblox Play Date</h3>
+                            <p>Schedule a time to play together</p>
+                            <div class="roblox-options">
+                                <input type="datetime-local" id="roblox-time" class="connection-input">
+                                <input type="text" id="roblox-game" placeholder="Game Name" class="connection-input">
+                                <div class="roblox-usernames">
+                                    <input type="text" id="your-roblox" placeholder="Your Roblox Username" class="connection-input">
+                                    <input type="text" id="their-roblox" placeholder="Their Roblox Username" class="connection-input">
+                                </div>
+                            </div>
+                            <button id="save-roblox-btn">Schedule Play Date</button>
+                        </div>
+                        
+                        <div class="connection-method">
+                            <h3>💌 Love Letter</h3>
+                            <p>Send a virtual love letter</p>
+                            <textarea id="love-letter" placeholder="Write your love letter here..." class="love-letter-input"></textarea>
+                            <button id="send-letter-btn">Save Letter</button>
+                        </div>
+                        
+                        <div class="connection-method">
+                            <h3>🎵 Our Song</h3>
+                            <p>Song that reminds you of us</p>
+                            <input type="text" id="song-title" placeholder="Song title" class="connection-input">
+                            <input type="text" id="song-artist" placeholder="Artist" class="connection-input">
+                            <button id="save-song-btn">Save Song</button>
+                        </div>
+                    </div>
+                    
+                    <div class="scheduled-events">
+                        <h3>Upcoming Events</h3>
+                        <div id="events-container" class="events-list">
+                            <!-- Events will be displayed here -->
+                            <div class="no-events-message">No events scheduled yet</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Milestones Modal -->
+            <div class="modal" id="milestones-modal" aria-labelledby="milestones-modal-title" aria-modal="true">
+                <div class="modal-content milestones-content">
+                    <span class="close-btn" aria-label="Close">&times;</span>
+                    <h2 id="milestones-modal-title">Our Relationship Milestones</h2>
+                    
+                    <div class="milestone-form">
+                        <h3>Add New Milestone</h3>
+                        <input type="text" id="milestone-title" placeholder="Milestone title" class="milestone-input">
+                        <input type="date" id="milestone-date" class="milestone-input">
+                        <select id="milestone-type" class="milestone-input">
+                            <option value="anniversary">Anniversary</option>
+                            <option value="first">First Time</option>
+                            <option value="achievement">Achievement</option>
+                            <option value="gift">Gift</option>
+                            <option value="trip">Trip</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <textarea id="milestone-description" placeholder="Describe this milestone..." class="milestone-textarea"></textarea>
+                        <button id="add-milestone-btn">Save Milestone</button>
+                    </div>
+                    
+                    <div class="milestones-timeline">
+                        <h3>Timeline of Our Journey</h3>
+                        <div id="timeline-container" class="timeline">
+                            <!-- Milestones will be added here dynamically -->
+                            <div class="no-milestones-message">Add your first milestone to start your journey timeline</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo Gallery Modal -->
+            <div class="modal" id="gallery-modal" aria-labelledby="gallery-modal-title" aria-modal="true">
+                <div class="modal-content gallery-content">
+                    <span class="close-btn" aria-label="Close">&times;</span>
+                    <h2 id="gallery-modal-title">Our Photo Gallery</h2>
+                    
+                    <div class="gallery-upload">
+                        <h3>Add New Photo</h3>
+                        <div class="upload-container">
+                            <div class="upload-preview" id="upload-preview">
+                                <div class="upload-placeholder">
+                                    <span class="upload-icon">📷</span>
+                                    <span>Photo preview</span>
+                                </div>
+                                <img id="preview-image" class="preview-image" style="display: none;" loading="lazy" alt="Photo preview">
+                            </div>
+                            <div class="upload-inputs">
+                                <input type="file" id="photo-upload" accept="image/*" class="file-input">
+                                <label for="photo-upload" class="file-label">Choose Photo</label>
+                                <input type="text" id="photo-caption" placeholder="Caption (optional)" class="caption-input">
+                                <input type="date" id="photo-date" class="date-input">
+                                <button id="add-photo-btn" disabled>Save Photo</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-grid" id="gallery-grid">
+                        <!-- Photos will be added here dynamically -->
+                        <div class="no-photos-message">Add your first photo to start your gallery</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <div class="shapes">
+            <div class="shape red-circle"></div>
+            <div class="shape pink-circle"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
