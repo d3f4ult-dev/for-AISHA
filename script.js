@@ -59,34 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         relationshipStartDate.value = savedStartDate;
     }
     
-    // Function to safely get item from localStorage
-    function getLocalStorageItem(key, defaultValue = null) {
-        try {
-            const item = localStorage.getItem(key);
-            return item ? JSON.parse(item) : defaultValue;
-        } catch (error) {
-            console.error(`Error reading from localStorage: ${error}`);
-            return defaultValue;
-        }
-    }
-
-    // Function to safely set item in localStorage
-    function setLocalStorageItem(key, value) {
-        try {
-            localStorage.setItem(key, JSON.stringify(value));
-            return true;
-        } catch (error) {
-            console.error(`Error writing to localStorage: ${error}`);
-            return false;
-        }
-    }
-
-    // Initialize default reasons with error handling
-    let reasons = [];
-    try {
-        reasons = getLocalStorageItem('loveReasons', []);
-        if (!Array.isArray(reasons) || reasons.length === 0) {
-            reasons = [
+    // Initialize default reasons (300+ long-distance relationship reasons)
+    let reasons = [
         // Personality traits (50)
         "Your kindness shines even from miles away",
         "The way you stay positive despite the distance between us",
@@ -405,330 +379,14 @@ document.addEventListener('DOMContentLoaded', () => {
         "The way you've learned which grocery store is closest to my home",
         "How you never complain about the time difference"
     ];
-            setLocalStorageItem('loveReasons', reasons);
-        }
-    } catch (error) {
-        console.error('Error initializing reasons:', error);
-        reasons = [
-            // Personality traits (50)
-            "Your kindness shines even from miles away",
-            "The way you stay positive despite the distance between us",
-            "How your voice instantly calms me during our calls",
-            "Your incredible patience with our long-distance situation",
-            "The way you make me laugh even on our worst days apart",
-            "How you always send me good morning texts despite the time difference",
-            "Your determination to make our relationship work regardless of distance",
-            "The way you remember little details about my day",
-            "Your thoughtfulness in every message you send",
-            "How you always know when I need to hear your voice",
-            "The comfort your texts bring me when I'm feeling alone",
-            "Your ability to make me feel loved from so far away",
-            "The way you inspire me to be better every day",
-            "How you never let the distance diminish our connection",
-            "Your incredible strength through all our challenges",
-            "The way you listen to me rant about my day without judgment",
-            "How you always find time for us despite your busy schedule",
-            "Your honesty even when it's difficult to communicate",
-            "The way you respect my feelings even from afar",
-            "How you never go to bed angry despite our occasional disagreements",
-            "Your ability to make even a simple text feel special",
-            "The way you celebrate my small victories as if they were your own",
-            "How you comfort me during tough times with just your words",
-            "Your unwavering loyalty despite the miles between us",
-            "The way you make ordinary moments extraordinary",
-            "How you keep our conversations interesting every day",
-            "Your creativity in finding ways to connect despite the distance",
-            "The way you share your world with me through photos and videos",
-            "How you're always thinking of new virtual date ideas",
-            "Your openness about your feelings and thoughts",
-            "The way you make me feel understood even when we're apart",
-            "How you never make me feel guilty about not being physically present",
-            "Your ability to sense when something's wrong over text",
-            "The way you encourage me to pursue my dreams",
-            "How you respect my personal space while still being present",
-            "Your generosity with your time and attention",
-            "The way you support my goals and ambitions from afar",
-            "How you always find the silver lining in our separation",
-            "Your compassion when I'm having a difficult day",
-            "The way you appreciate the little things I do for you",
-            "How you never let a day pass without saying 'I love you'",
-            "Your sense of adventure that makes me excited for our future",
-            "The way you light up during our video calls",
-            "How you handle misunderstandings with grace and maturity",
-            "Your ability to make me feel like the most important person in the world",
-            "The way you remember our important dates and milestones",
-            "How you trust me completely despite the distance",
-            "Your emotional intelligence in navigating our long-distance challenges",
-            "The way you make our relationship a priority every day",
-            "How your values align with mine even though we're from different places",
-
-            // Physical traits & mannerisms (30)
-            "The way your eyes crinkle when you smile during our video calls",
-            "How you twirl your hair when you're focusing during our study sessions",
-            "Your adorable sleepy face during our late-night calls",
-            "The way you bite your lip when you're thinking deeply",
-            "How your face lights up when you talk about things you're passionate about",
-            "The sound of your laugh that makes my day better instantly",
-            "Your expressive hand gestures during our video chats",
-            "The way you scrunch your nose when you're confused",
-            "How you always fix your hair before answering my video calls",
-            "Your adorable concentration face when you're reading my messages",
-            "The way you cover your mouth when you laugh too hard",
-            "How peaceful you look when you fall asleep during our calls",
-            "Your contagious smile that I can feel through the screen",
-            "The way you get excited and speak faster about things you love",
-            "How you fidget with objects around you during our conversations",
-            "Your soothing voice that I could listen to for hours",
-            "The way your eyes tell me you miss me without saying a word",
-            "How you always wear the necklace I gave you during our calls",
-            "Your cute morning hair in our early video chats",
-            "The way you rest your chin on your hand when listening to me",
-            "How you always snuggle with the plushie I sent you",
-            "Your gentle way of speaking when we're having deep conversations",
-            "The way you occasionally glance away shyly during video calls",
-            "How your entire face smiles, not just your mouth",
-            "Your perfect timing with reactions to my stories",
-            "The way you hold up things to the camera to show me",
-            "How you tilt your head when you're curious about something",
-            "Your graceful movements even through a webcam",
-            "The way you hug your pillow when you miss me during calls",
-            "How you always look your best for our virtual dates",
-
-            // Shared memories (40)
-            "The first time we stayed up all night just talking on the phone",
-            "When we accidentally wore matching outfits during our video call",
-            "How we both cried watching the same movie while on the phone",
-            "Our virtual cooking date where we both made the same recipe",
-            "The time we sent each other the exact same gift without planning it",
-            "When you gave me a virtual tour of your hometown",
-            "Our first 'good morning' and 'good night' routine that we still maintain",
-            "The care package you sent that arrived on the perfect day",
-            "When we both watched the sunrise/sunset simultaneously from different places",
-            "Our failed attempt at playing online games that ended in laughter",
-            "The time we both got caught in the rain during our video call",
-            "How we celebrated your birthday through a screen but it still felt special",
-            "Our virtual coffee dates every Sunday morning",
-            "The handwritten letter that made me cry happy tears",
-            "When we first shared our playlists and discovered our similar music taste",
-            "The time you fell asleep during our call and I just watched you peacefully",
-            "Our inside jokes that nobody else understands",
-            "The virtual double date with our friends that went surprisingly well",
-            "How we both ordered the same takeout food to pretend we were dining together",
-            "The time we stargazed together while on the phone",
-            "Our holiday traditions we've created despite being apart",
-            "When we first said 'I love you' and the call went silent with emotion",
-            "The surprise online shopping session where you helped me pick out clothes",
-            "How we explored Google Earth together visiting places we want to travel to",
-            "The time we both dressed up formally for our special virtual date night",
-            "Our 'show and tell' moments where we share new things from our lives",
-            "When you gave me a virtual tour of your new apartment/room",
-            "The time we both got emotional watching our relationship photo slideshow",
-            "Our simultaneous workout sessions to motivate each other",
-            "The virtual museum tours we've taken together",
-            "How we read the same book together and discussed it",
-            "The time we tried to bake the same cake and compared results",
-            "Our habit of sending each other songs that remind us of each other",
-            "When we used online drawing tools to create art together",
-            "The time we attempted a long-distance dance lesson",
-            "How we've created playlists documenting different phases of our relationship",
-            "The virtual scavenger hunts we've created for each other",
-            "Our shared online calendar marking days until we meet again",
-            "The time we watched the same concert livestream together",
-            "Our tradition of taking screenshots during funny moments in our calls",
-
-            // Future plans & dreams (35)
-            "The apartment we dream of sharing one day",
-            "Our bucket list of places we want to travel together",
-            "The future pet we plan to adopt",
-            "How we talk about the garden we'll plant at our future home",
-            "Our plans for the first meal we'll cook together in person",
-            "The future holiday traditions we want to create",
-            "How we discuss names for our future children",
-            "The home decorations we've already picked out together",
-            "Our plans for the day when distance is no longer between us",
-            "The restaurant we want to visit on our first real date",
-            "How we've planned our future morning routines together",
-            "The movie marathon we'll have during our first weekend together",
-            "Our plans for introducing each other to our favorite local spots",
-            "The hike we want to take once we're in the same place",
-            "How we talk about the first thing we'll do when we see each other",
-            "The road trips we've mapped out for our future",
-            "Our plans for the first holiday we'll spend together",
-            "The songs we want to dance to together in person",
-            "How we discuss where we want to settle down eventually",
-            "Our future lazy Sundays we've already planned out",
-            "The volunteer work we want to do together",
-            "How we talk about growing old together",
-            "The business idea we might pursue together someday",
-            "Our plans for the perfect date night once distance isn't a factor",
-            "The coffee shop where we plan to have our first in-person coffee date",
-            "How we discuss our future home office setup",
-            "The bookshelf we want to build together with all our favorite books",
-            "Our plans for the garden we'll grow together",
-            "The board game collection we plan to build",
-            "How we talk about teaching each other our favorite hobbies in person",
-            "Our dream of watching a sunset on the beach together",
-            "The local festivals and events we plan to attend together",
-            "How we discuss the first piece of furniture we'll buy together",
-            "The DIY projects we've bookmarked to do together someday",
-            "Our shared vision of hosting dinner parties in our future home",
-
-            // Daily connections (30)
-            "How we never miss our goodnight call despite time zones",
-            "The way we text each other random thoughts throughout the day",
-            "Our 'morning coffee' video chats before work/school",
-            "The photos you send of ordinary moments in your day",
-            "How we share our meals through pictures",
-            "The way we schedule our days around our call times",
-            "Our habit of sending each other links to interesting articles/videos",
-            "How we both keep journals of things to tell each other",
-            "The voice messages you send when you're too busy to call",
-            "Our virtual study/work sessions where we're just present together",
-            "The way we shop online together using screen sharing",
-            "How we watch TV shows simultaneously and text our reactions",
-            "Our virtual movie nights with synchronized play",
-            "The way we plan our weekends to maximize our time together",
-            "How we share snippets of conversations we had with others",
-            "The way we check in during our lunch breaks",
-            "Our tradition of sending Sunday recap emails of our week",
-            "How we've learned to be comfortable with silence during video calls",
-            "The screenshots of funny things we want to share with each other",
-            "Our co-working video calls when we both have projects to finish",
-            "The way we text each other during meetings/classes",
-            "How we've developed a habit of narrating our cooking process to each other",
-            "Our virtual 'commute' calls when we're heading to work/school",
-            "The way we say 'hello' to each other's friends/family through video",
-            "How we virtually 'tuck each other in' at night",
-            "The shared digital calendar we use to track our schedules",
-            "Our daily tradition of sharing one good thing that happened",
-            "How we send each other weather updates from our locations",
-            "The virtual background tours of any new places we visit",
-            "Our habit of sending each other outfits for approval before important events",
-
-            // Long-distance specifics (35)
-            "How our relationship has grown stronger despite the miles between us",
-            "The way we've mastered different time zones",
-            "Our ability to sense each other's moods through text",
-            "The miles between us that seem smaller with each passing day",
-            "How we've learned to communicate better because of the distance",
-            "The way we appreciate our time together more because it's limited",
-            "Our creative solutions to celebrate holidays apart",
-            "How we've developed deeper emotional intimacy due to our distance",
-            "The way we've grown more independent while still growing together",
-            "Our perfect balance of togetherness and personal space",
-            "How we never let technology issues ruin our time together",
-            "The way we've learned each other's communication styles so well",
-            "Our ability to make the most of different time zones",
-            "How we keep track of each other's busy schedules across distance",
-            "The countdown app we both check every day until we meet",
-            "Our collection of screenshots from all our video calls",
-            "How we've mastered the art of sending perfectly timed care packages",
-            "The way we include each other in family events through video",
-            "Our shared digital photo album that we both add to regularly",
-            "How we write letters despite having faster communication methods",
-            "The way we've made our relationship work despite everyone's doubts",
-            "Our understanding of each other's need for local friends and support",
-            "How we celebrate relationship milestones in creative long-distance ways",
-            "The multiple forms of communication we use throughout the day",
-            "Our strategy for handling missed calls and scheduling conflicts",
-            "How we handle holidays spent apart with special traditions",
-            "The way we've gotten to know each other's surrounding through virtual tours",
-            "Our mutual respect for each other's local commitments",
-            "How we share our cultural differences more intentionally",
-            "The distance that's made us more intentional about our communication",
-            "Our mutual commitment to closing the distance someday",
-            "How we each know the other's neighborhood through stories and videos",
-            "The way we support each other's independent growth while apart",
-            "Our ability to handle emergencies despite being far apart",
-            "How the distance has clarified what truly matters in our relationship",
-
-            // Missing each other (20)
-            "The way my heart still races when your name appears on my phone",
-            "How I save special stories to tell you on our calls",
-            "The empty feeling when I experience something amazing without you there",
-            "How I catch myself turning to tell you something before remembering you're not here",
-            "The way I still smell your perfume/cologne on the gift you sent me",
-            "How I imagine your reactions to things I see throughout my day",
-            "The way I keep screenshots of your smile as my phone background",
-            "How I've memorized the sound of your laugh to replay when I miss you",
-            "The way I sometimes hug the pillow you sent me when missing you gets tough",
-            "How I walk past places we've talked about visiting together and imagine you there",
-            "The way I rehearse things to tell you throughout my day",
-            "How I feel your absence most strongly during sunset/sunrise",
-            "The way I touch the screen during our video calls wishing I could touch you",
-            "How I sometimes wake up and check my phone hoping for a message from you",
-            "The way certain songs make me stop everything because they remind me of you",
-            "How I keep a journal of things I want to experience with you someday",
-            "The way I sleep with my phone nearby in case you call",
-            "How I look for gifts for you wherever I go",
-            "The way I automatically smile when I get a notification from you",
-            "How empty my hand feels without yours to hold",
-
-            // Virtual connection (30)
-            "The way our Netflix Party nights make me feel close to you",
-            "How we've developed our own texting shorthand",
-            "The virtual flowers you send on special occasions",
-            "How we use screen sharing to shop for each other",
-            "The way we play online games together to feel connected",
-            "Our virtual dinner dates with the same menu",
-            "How we leave voice messages for each other to wake up to",
-            "The way we use the same app to draw together",
-            "Our shared Spotify playlists that tell our story",
-            "How we watch YouTube videos together using synchronized play",
-            "The way we send each other songs that describe our feelings",
-            "Our habit of rating each other's outfits over video call",
-            "How we keep a shared digital journal of our relationship",
-            "The way we have virtual coffee dates with our favorite mugs",
-            "Our online multiplayer worlds where we build things together",
-            "How we send each other links to learn about each other's interests",
-            "The way we take virtual walks together using video calls",
-            "Our shared Pinterest boards for future plans",
-            "How we use apps to track each other's flights when traveling",
-            "The way we binge the same shows so we can discuss them",
-            "Our virtual karaoke nights that make our neighbors question us",
-            "How we keep a shared digital calendar marking important dates",
-            "The way we play 20 questions to learn new things about each other",
-            "Our digital book club where we read the same books",
-            "How we do simultaneous grocery shopping while on video calls",
-            "The way we leave surprise messages in shared documents",
-            "Our virtual workout sessions that keep us motivated",
-            "How we send each other virtual care packages through food delivery",
-            "The way we share our daily playlists to feel connected",
-            "Our habit of falling asleep on video calls to feel less alone",
-
-            // Appreciation from afar (30)
-            "How you remember to check if I've eaten during busy days",
-            "The way you notice when I'm quieter than usual over text",
-            "Your thoughtful scheduled messages when you know you'll be busy",
-            "How you send me your favorite local snacks that I can't get here",
-            "The way you remember the names of my coworkers/friends",
-            "How you've learned about my city just to understand my daily life better",
-            "The playlists you make for different parts of my day",
-            "How you keep track of my big work/school deadlines",
-            "The way you've researched my favorite local restaurants for delivery surprises",
-            "How you always ask about my family by name",
-            "The way you create digital adventures for us when I'm feeling low",
-            "How you've learned the weather patterns in my city",
-            "The thoughtful voice messages that arrive exactly when I need them",
-            "How you've memorized my schedule to know the best times to call",
-            "The way you remember details from stories I told weeks ago",
-            "How you've learned what delivery services work in my area",
-            "The way you send me articles related to my interests",
-            "How you keep a list of movies/shows I mention wanting to watch",
-            "The way you suggest songs based on how my day is going",
-            "How you know exactly what kind of day I've had just from a text",
-            "The virtual 'care packages' of links and videos you send",
-            "How you've researched events in my area to suggest weekend activities",
-            "The way you send me photos of things that made you think of me",
-            "How you encourage me to maintain local friendships",
-            "The way you remember which of my plants need watering",
-            "How you check in on me during bad weather in my area",
-            "The way you send me links to local news from my area",
-            "How you time your good morning texts to my time zone",
-            "The way you've learned which grocery store is closest to my home",
-            "How you never complain about the time difference"
-        ];
-        setLocalStorageItem('loveReasons', reasons);
+    
+    // Load saved reasons from local storage if available
+    const savedReasons = localStorage.getItem('loveReasons');
+    if (savedReasons) {
+        reasons = JSON.parse(savedReasons);
+    } else {
+        // Save default reasons
+        localStorage.setItem('loveReasons', JSON.stringify(reasons));
     }
     
     // Update total reasons count
@@ -763,7 +421,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Secret code detection
     let secretBuffer = '';
     const secretCode = 'aisha';
-    const funnyCode = 'funny';
     
     // Function to display a random reason
     function displayRandomReason() {
@@ -850,9 +507,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (secretBuffer.includes(secretCode)) {
             secretBuffer = ''; // Reset buffer
             showSecretModal();
-        } else if (secretBuffer.includes(funnyCode)) {
-            secretBuffer = ''; // Reset buffer
-            showFunnyModal();
         }
     });
     
@@ -875,32 +529,32 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Save meeting date and locations
     saveDateBtn.addEventListener('click', () => {
-        try {
         const dateValue = nextDateInput.value;
         const startDate = document.getElementById('relationship-start-date').value;
         const yourLoc = yourLocationInput.value.trim();
         const theirLoc = theirLocationInput.value.trim();
         
         if (dateValue) {
-                setLocalStorageItem('nextMeetingDate', dateValue);
+            localStorage.setItem('nextMeetingDate', dateValue);
             nextMeetingDate = dateValue;
             updateCountdown(dateValue);
         }
         
         if (startDate) {
-                setLocalStorageItem('relationshipStartDate', startDate);
+            localStorage.setItem('relationshipStartDate', startDate);
+            // Update dashboard if it exists
             if (document.getElementById('days-together')) {
                 updateDashboardStats();
             }
         }
         
         if (yourLoc) {
-                setLocalStorageItem('yourLocation', yourLoc);
+            localStorage.setItem('yourLocation', yourLoc);
             yourLocation = yourLoc;
         }
         
         if (theirLoc) {
-                setLocalStorageItem('theirLocation', theirLoc);
+            localStorage.setItem('theirLocation', theirLoc);
             theirLocation = theirLoc;
         }
         
@@ -910,11 +564,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Close modal
         dateModal.classList.remove('active');
-            showToast('Date and location saved successfully!');
-        } catch (error) {
-            console.error('Error saving date:', error);
-            showToast('Error saving date. Please try again.');
-        }
     });
     
     // Add new reason functionality
@@ -926,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
             reasons.push(newReason);
             
             // Save to local storage
-            setLocalStorageItem('loveReasons', reasons);
+            localStorage.setItem('loveReasons', JSON.stringify(reasons));
             
             // Update counts
             totalReasons.textContent = reasons.length;
@@ -948,32 +597,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close modals when clicking close button
     closeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            closeAllModals();
+            reasonModal.classList.remove('active');
+            dateModal.classList.remove('active');
+            secretModal.classList.remove('active');
+            memoriesModal.classList.remove('active');
+            connectModal.classList.remove('active');
+            milestonesModal.classList.remove('active');
+            galleryModal.classList.remove('active');
         });
     });
     
     // Close modals when clicking outside of modal content
     window.addEventListener('click', (e) => {
         if (e.target === reasonModal) {
-            closeAllModals();
+            reasonModal.classList.remove('active');
         }
         if (e.target === dateModal) {
-            closeAllModals();
+            dateModal.classList.remove('active');
         }
         if (e.target === secretModal) {
-            closeAllModals();
+            secretModal.classList.remove('active');
         }
         if (e.target === memoriesModal) {
-            closeAllModals();
+            memoriesModal.classList.remove('active');
         }
         if (e.target === connectModal) {
-            closeAllModals();
+            connectModal.classList.remove('active');
         }
         if (e.target === milestonesModal) {
-            closeAllModals();
+            milestonesModal.classList.remove('active');
         }
         if (e.target === galleryModal) {
-            closeAllModals();
+            galleryModal.classList.remove('active');
         }
     });
     
@@ -1026,7 +681,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Handle specific actions for each menu item
             if (this === homeLink) {
                 // Home - just reset to main view
-                closeAllModals();
+                reasonModal.classList.remove('active');
+                dateModal.classList.remove('active');
+                memoriesModal.classList.remove('active');
+                connectModal.classList.remove('active');
+                secretModal.classList.remove('active');
             }
         });
     });
@@ -1062,7 +721,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('memories-link').addEventListener('click', (e) => {
         e.preventDefault();
         setActiveMenuItem(e.target);
-        openModal('memories-modal');
+        memoriesModal.classList.add('active');
         
         // Focus the memory title input for better UX
         if (memoryTitle) {
@@ -1074,7 +733,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('connect-link').addEventListener('click', (e) => {
         e.preventDefault();
         setActiveMenuItem(e.target);
-        openModal('connect-modal');
+        connectModal.classList.add('active');
         
         // Refresh events display each time the connect modal is opened
         renderEvents();
@@ -1257,12 +916,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Menu navigation for memories and connect
     memoriesLink.addEventListener('click', (e) => {
         e.preventDefault();
-        openModal('memories-modal');
+        memoriesModal.classList.add('active');
     });
     
     connectLink.addEventListener('click', (e) => {
         e.preventDefault();
-        openModal('connect-modal');
+        connectModal.classList.add('active');
     });
     
     // After existing DOM elements for connect features
@@ -1486,7 +1145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Quick Memory button functionality
     quickMemoryBtn.addEventListener('click', () => {
         // Show memories modal
-        openModal('memories-modal');
+        memoriesModal.classList.add('active');
         
         // Update active menu
         setActiveMenuItem(document.getElementById('memories-link'));
@@ -1500,7 +1159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Quick Letter button functionality
     quickLetterBtn.addEventListener('click', () => {
         // Show connect modal
-        openModal('connect-modal');
+        connectModal.classList.add('active');
         
         // Update active menu
         setActiveMenuItem(document.getElementById('connect-link'));
@@ -1514,7 +1173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Quick Schedule Play button functionality
     quickScheduleBtn.addEventListener('click', () => {
         // Show connect modal
-        openModal('connect-modal');
+        connectModal.classList.add('active');
         
         // Update active menu
         setActiveMenuItem(document.getElementById('connect-link'));
@@ -1560,7 +1219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     milestonesLink.addEventListener('click', (e) => {
         e.preventDefault();
         setActiveMenuItem(e.target);
-        openModal('milestones-modal');
+        milestonesModal.classList.add('active');
         
         // Focus the milestone title input for better UX
         if (milestoneTitle) {
@@ -1574,7 +1233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Quick Milestone button functionality
     quickMilestoneBtn.addEventListener('click', () => {
         // Show milestones modal
-        openModal('milestones-modal');
+        milestonesModal.classList.add('active');
         
         // Update active menu
         setActiveMenuItem(document.getElementById('milestones-link'));
@@ -1684,7 +1343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     galleryLink.addEventListener('click', (e) => {
         e.preventDefault();
         setActiveMenuItem(e.target);
-        openModal('gallery-modal');
+        galleryModal.classList.add('active');
         
         // Render gallery
         renderGallery();
@@ -1693,7 +1352,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Quick Photo button functionality
     quickPhotoBtn.addEventListener('click', () => {
         // Show gallery modal
-        openModal('gallery-modal');
+        galleryModal.classList.add('active');
         
         // Update active menu
         setActiveMenuItem(document.getElementById('gallery-link'));
@@ -2017,107 +1676,5 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Schedule next animation cycle
         setTimeout(startHeartAnimationLoop, 5000);
-    }
-
-    // Function to close all modals
-    function closeAllModals() {
-        const modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-            modal.classList.remove('active');
-        });
-    }
-
-    // Function to open a specific modal
-    function openModal(modalId) {
-        closeAllModals();
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.classList.add('active');
-        }
-    }
-
-    // Update close button event listeners
-    closeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            closeAllModals();
-        });
-    });
-
-    // Add event listener for escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeAllModals();
-        }
-    });
-
-    // Update menu item click handlers
-    document.querySelectorAll('.menu li a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const modalId = link.id.replace('-link', '-modal');
-            openModal(modalId);
-            setActiveMenuItem(link);
-        });
-    });
-
-    // Update quick action button handlers
-    document.querySelectorAll('.quick-action-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const modalId = btn.id.replace('-btn', '-modal');
-            openModal(modalId);
-        });
-    });
-
-    // Function to show funny modal
-    function showFunnyModal() {
-        // Reset animation by removing and re-adding elements
-        const floatingElements = document.querySelector('#funny-modal .floating-elements');
-        const originalHTML = floatingElements.innerHTML;
-        floatingElements.innerHTML = '';
-        
-        // Trigger reflow
-        void floatingElements.offsetWidth;
-        
-        // Add elements back
-        floatingElements.innerHTML = originalHTML;
-        
-        // Show modal
-        document.getElementById('funny-modal').classList.add('active');
-        
-        // Set continuous animation cycle
-        startFunnyAnimationLoop();
-    }
-    
-    // Function to create continuous animation of laughing emojis
-    function startFunnyAnimationLoop() {
-        if (!document.getElementById('funny-modal').classList.contains('active')) return;
-        
-        const emojis = document.querySelectorAll('#funny-modal .floating-elements .laugh, #funny-modal .floating-elements .joy');
-        emojis.forEach((emoji, index) => {
-            // Reset animation
-            emoji.style.animation = 'none';
-            void emoji.offsetWidth; // Trigger reflow
-            
-            // Randomize position and delay
-            const topPos = Math.random() * 90 + 5; // 5% to 95%
-            const delay = Math.random() * 5; // 0 to 5s delay
-            const duration = 5 + Math.random() * 5; // 5 to 10s duration
-            const fromLeft = Math.random() > 0.5; // 50% chance to start from left or right
-            
-            emoji.style.top = `${topPos}%`;
-            
-            if (fromLeft) {
-                emoji.style.left = '-5%';
-                emoji.style.right = 'auto';
-                emoji.style.animation = `float-across ${duration}s linear ${delay}s forwards`;
-            } else {
-                emoji.style.right = '-5%';
-                emoji.style.left = 'auto';
-                emoji.style.animation = `float-across ${duration}s linear ${delay}s forwards reverse`;
-            }
-        });
-        
-        // Schedule next animation cycle
-        setTimeout(startFunnyAnimationLoop, 5000);
     }
 }); 
