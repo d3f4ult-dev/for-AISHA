@@ -45,7 +45,7 @@
                     <div class="item-icon">❤️</div>
                     <div class="item-content">
                         <h4>Days Together</h4>
-                        <div class="item-value" id="days-together">0</div>
+                        <div class="item-value" id="days-together">1 year, 7 months and 5 Days</div>
                     </div>
                 </div>
                 <div class="dashboard-item">
@@ -200,9 +200,12 @@
                     </div>
                     <div class="secret-image-container">
                         <div class="secret-image">
-                            <!-- Using onerror to handle missing image gracefully -->
-                            <img src="https://scontent.fcai19-8.fna.fbcdn.net/v/t1.15752-9/494813931_1581091089213329_373160727174947505_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_ohc=8z1AzBU7XYgQ7kNvwEdpuha&_nc_oc=AdmLi5FG_35faHLmSw5OGnUoahPVl8aeN7JRJ7_1oQ7RH7HGhHtUsRY-Vs2Kq7UD-ko&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fcai19-8.fna&oh=03_Q7cD2AE9w_ophqZdQ4M6sWm-bJ3Q_pf-QtIn-4dhNaqUX_ZoFQ&oe=683D6D0C" alt="A special photo of us together" class="couple-photo" 
-                                 onerror="this.style.display='none'; document.querySelector('.placeholder-text').style.display='block';">
+                            <div class="image-loading">Loading...</div>
+                            <img src="https://scontent.fcai19-8.fna.fbcdn.net/v/t1.15752-9/494813931_1581091089213329_373160727174947505_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_ohc=8z1AzBU7XYgQ7kNvwEdpuha&_nc_oc=AdmLi5FG_35faHLmSw5OGnUoahPVl8aeN7JRJ7_1oQ7RH7HGhHtUsRY-Vs2Kq7UD-ko&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fcai19-8.fna&oh=03_Q7cD2AE9w_ophqZdQ4M6sWm-bJ3Q_pf-QtIn-4dhNaqUX_ZoFQ&oe=683D6D0C" 
+                                     alt="A special photo of us together" 
+                                     class="couple-photo"
+                                     onload="this.style.display='block'; document.querySelector('.image-loading').style.display='none';"
+                                     onerror="this.style.display='none'; document.querySelector('.image-loading').style.display='none'; document.querySelector('.placeholder-text').style.display='block';">
                             <div class="placeholder-text" aria-label="Photo placeholder">Our special photo goes here</div>
                         </div>
                         
@@ -263,6 +266,68 @@
                         <h3>You're my everything</h3>
                         <p>No matter how far apart we are, my love for you grows stronger every day</p>
                         <div class="love-signature">Forever Yours ❤️</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secret Funny Modal -->
+            <div class="modal" id="funny-modal" aria-labelledby="funny-modal-title" aria-modal="true">
+                <div class="modal-content funny-content">
+                    <span class="close-btn" aria-label="Close">&times;</span>
+                    <div class="funny-confetti"></div>
+                    <h2 id="funny-modal-title" class="funny-title">Funny Moments ❤️</h2>
+                    <div class="funny-message">
+                        <p class="typewriter-text">ummm actually i don't find you funny DAVID TAKE IT OFFFFFFF!!!!!!!!!!</p>
+                        <div class="special-effects">
+                            <div class="pulsing-heart">🤓</div>
+                            <div class="sparkles">😡</div>
+                        </div>
+                    </div>
+                    <div class="funny-poem">
+                        <p>DAVID</p>
+                        <p>I SAID DO NOT PUT THIS ON THE WEBSITE</p>
+                        <p>WE ARE DONE</p>
+                        <p>I AM NOT LAUGHING</p>
+                    </div>
+                    <div class="funny-image-container">
+                        <div class="funny-image">
+                            <div class="image-loading">Loading...</div>
+                            <img src="https://scontent.fcai19-8.fna.fbcdn.net/v/t1.15752-9/494358966_1283104186773427_5026243386742043420_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_ohc=B4IdYpFcbdwQ7kNvwHt6cFm&_nc_oc=AdmiVFHbA9k6cjQk4TySW7WdUGnu_rBvlwR3PNE10AA2zpcsiVFkIPXbwVEYaAfQ9FY&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fcai19-8.fna&oh=03_Q7cD2AGWXv8ZlShybjfNKbIWmjD6fCS4hCPGXpopvURhxUxvEg&oe=683F2D5A" 
+                                     alt="A funny photo of us together" 
+                                     class="couple-photo"
+                                     onload="this.style.display='block'; document.querySelector('.image-loading').style.display='none';"
+                                     onerror="this.style.display='none'; document.querySelector('.image-loading').style.display='none'; document.querySelector('.placeholder-text').style.display='block';">
+                            <div class="placeholder-text" aria-label="Photo placeholder">Our funny photo goes here</div>
+                        </div>
+                        
+                        <!-- Animated emojis -->
+                        <div class="floating-elements">
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                            <span class="nerd">🤓</span>
+                        </div>
+                    </div>
+                    <div class="extra-funny-message">
+                        <h3>You make me laugh every day</h3>
+                        <p>Your sense of humor brightens my world and makes every moment special</p>
+                        <div class="funny-signature">Forever Laughing With You ❤️</div>
                     </div>
                 </div>
             </div>
